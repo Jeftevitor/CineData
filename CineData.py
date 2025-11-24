@@ -1,3 +1,4 @@
+import json
 filmes_fav = {}
 def coloca_filme():
     q = int(input("Quantos filmes deseja adicionar aos favoritos?"))
@@ -15,5 +16,3 @@ adicionar = ("Deseja adicionar filmes a sua lista de favoritos? (s/n)").lower()
 
 if adicionar == "s":
     coloca_filme()
-    
-    
