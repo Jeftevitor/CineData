@@ -72,3 +72,8 @@ Nenhuma ação de pesquisa é realizada.
 
 O uso da biblioteca json permitiu estruturar as informações de maneira eficiente, garantindo simplicidade tanto na leitura quanto na escrita dos dados. As funcionalidades de adicionar, exibir, avaliar e buscar filmes tornam o sistema CINEdata uma ferramenta prática, funcional e acessível ao usuário.
  O projeto evidencia a importância do armazenamento estruturado, da interação com o usuário e da organização dos dados, ao mesmo tempo em que reforça conceitos importantes da programação em Python.
+
+<!-- Conclusão -->
+
+O uso da biblioteca json permitiu estruturar as informações de maneira eficiente, garantindo simplicidade tanto na leitura quanto na escrita dos dados. As funcionalidades de adicionar, exibir, avaliar e buscar filmes tornam o sistema CINEdata uma ferramenta prática, funcional e acessível ao usuário.
+ O projeto evidencia a importância do armazenamento estruturado, da interação com o usuário e da organização dos dados, ao mesmo tempo em que reforça conceitos importantes da programação em Python.
