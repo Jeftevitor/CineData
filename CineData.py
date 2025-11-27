@@ -23,7 +23,7 @@ def coloca_filme():
         filme_dict = {
             "Filme": filme,
             "Ano": ano,
-            "Genero": genero,
+            "Genêro": genero,
             "Avaliação": avaliacao,
             "Vezes que você assistiu": assistiu
         }
