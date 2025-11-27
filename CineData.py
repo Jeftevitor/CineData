@@ -9,23 +9,24 @@ def coloca_filme():
         filme = input("Nome do filme: ")
         ano = int(input("Ano de lançamento: "))
         genero = input("Gênero: ")
+        
+        assistiu = int(input("Quantas vezes você assistiu este filme? "))
+        if assistiu < 0:
+            assistiu = 0
+        
         avaliacao = float(input("Avalie este filme entre 0 e 10: "))
 
         if avaliacao > 10:
             avaliacao = 10
         elif avaliacao < 0:
             avaliacao = 0
-        
-        assistiu = int(input("Quantas vezes você assistiu este filme? "))
-        if assistiu < 0:
-            assistiu = 0
 
         filme_dict = {
             "Filme": filme,
             "Ano": ano,
             "Genêro": genero,
-            "Avaliação": avaliacao,
-            "Vezes que você assistiu": assistiu
+            "Vezes que você assistiu": assistiu,
+            "Avaliação": avaliacao
         }
 
         filmes.append(filme_dict)
