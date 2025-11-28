@@ -71,3 +71,59 @@ if adicionar == "s":
 
 else:
     print("Ok. Nada foi feito.")
+
+
+# Lê JSON existente
+    if os.path.exists("fav.json"):
+        with open("fav.json", "r", encoding="utf-8") as f:
+            dados_existentes = json.load(f)
+    else:
+        dados_existentes = []
+
+# Rankings
+a = [i["Avaliação"] for i in dados_existentes]
+avaliado = sorted(a, reverse=True)
+
+r = [i["Vezes que você assistiu"] for i in dados_existentes]
+ranking = sorted(r, reverse=True)
+
+buscar = input("Deseja buscar filmes da sua lista de favoritos? (s/n): ").lower()
+
+while buscar == "s":
+    filme_b = str(input("Digite o nome do filme que deseja procurar: "))
+
+    for i in dados_existentes:
+        if i["Filme"] == filme_b:
+            print(i)
+            print("\nRankings\n")
+
+            # Ranking por avaliação
+            pos_avaliado = avaliado.index(i["Avaliação"]) + 1
+            print(f"O filme {filme_b} é o {pos_avaliado}° mais bem avaliado!")
+
+            # Ranking por vezes assistido
+            pos_assistido = ranking.index(i["Vezes que você assistiu"]) + 1
+            print(f"O filme {filme_b} é o {pos_assistido}° mais assistido!")
+
+    buscar = input("Deseja buscar filmes da sua lista de favoritos? (s/n): ").lower()
+    if buscar == "n":
+        print("Ok, paramos por aqui!")
+        break
+
+print("Chegamos ao fim do CineData! Aqui está o seu ranking:")
+
+
+for i in dados_existentes:
+    print(f"Filme: {i['Filme']}\n")
+
+    # Ranking por avaliação
+    pos_avaliado = avaliado.index(i["Avaliação"]) + 1
+    print("Avaliação:")
+    print(f"→ {i['Filme']} é o {pos_avaliado}° mais bem avaliado!\n")
+
+    # Ranking por vezes assistido
+    pos_assistido = ranking.index(i["Vezes que você assistiu"]) + 1
+    print("Assistidos:")
+    print(f"→ {i['Filme']} é o {pos_assistido}° mais assistido!\n")
+
+    print("-" * 40)

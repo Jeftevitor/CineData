@@ -42,7 +42,7 @@ O sistema permite que o usuário visualize todos os filmes previamente salvos no
 Se o usuário optar por exibir:
 O programa mostra:
 
--o nome dos filmes favoritos;-
+-o nome dos filmes favoritos e ano de lançamento;-
 
 -a avaliação atribuída;-
 
@@ -59,19 +59,21 @@ O sistema verifica se o filme informado está presente na lista;
 
 Caso esteja, são exibidas as informações completas sobre ele:
 
--nome do filme;-
+-nome do filme e ano;-
 
 -avaliação do usuário;-
 
 -quantidade de vezes assistido.-
 
+Quando o usuário procurasse por um filme favorito apareceria  o nome do filme, o ano de lançamento, a avaliação que o usuário deu para ele e a posição no qual o filme se encontra nos ranking de mais bem avaliado e de mais assistido.
+
 *Se o usuário não desejar buscar:*
 Nenhuma ação de pesquisa é realizada.
 
-<!-- Conclusão -->
+<!-- Ranking -->
 
-O uso da biblioteca json permitiu estruturar as informações de maneira eficiente, garantindo simplicidade tanto na leitura quanto na escrita dos dados. As funcionalidades de adicionar, exibir, avaliar e buscar filmes tornam o sistema CINEdata uma ferramenta prática, funcional e acessível ao usuário.
-O projeto evidencia a importância do armazenamento estruturado, da interação com o usuário e da organização dos dados, ao mesmo tempo em que reforça conceitos importantes da programação em Python.
+Ao final do código o usuário poderá olhar ao seu top 10 filmes mais assistidos e o top 10 dos filmes mais avaliados, segundo o usuário.
+
 
 <!-- Conclusão -->
 
