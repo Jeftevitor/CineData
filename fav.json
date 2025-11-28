@@ -1,77 +1,86 @@
-{
-  "Filme": "Vingadores:Ultimato",
-  "Ano": 2019,
-  "Genero": "Ação e Super-herois",
-  "Vezes que você assistiu": 1,
-  "Avaliação": 9.5
-},
-{
-  "Filme": "Matrix",
-  "Ano": 1999,
-  "Gênero": "Ficção Científica",
-  "Vezes que você assistiu": 4,
-  "Avaliação": 8.9
-},
-{
-  "Filme": "A Substância",
-  "Ano": 2024,
-  "Gênero": "Terror",
-  "Vezes que você assistiu": 3,
-  "Avaliação": 8
-},
-{
-  "Filme": "A Onda",
-  "Ano": 2008,
-  "Gênero": "Thriller",
-  "Vezes que você assistiu": 5,
-  "Avaliação": 7.5
-},
-{
-  "Filme": "Estômago",
-  "Ano": 2008,
-  "Gênero": "Comédia",
-  "Vezes que você assistiu": 4,
-  "Avaliação": 7.8
-},
-{
-  "Filme": "O céu de Suely",
-  "Ano": 2006,
-  "Gênero": "Drama",
-  "Vezes que você assistiu": 5,
-  "Avaliação": 8.7
-},
-{
-  "Filme": "O segredo de Brokeback Mountain",
-  "Ano": 2006,
-  "Gênero": "Drama",
-  "Vezes que você assistiu": 3,
-  "Avaliação": 8.3
-},
-{
-  "Filme": "Whiplash",
-  "Ano": 2014,
-  "Gênero": "Drama",
-  "Vezes que você assistiu": 6,
-  "Avaliação": 9.5
-},
-{
-  "Filme": "Batman: O Cavaleiro das Trevas",
-  "Ano": 2008,
-  "Gênero": "Ação",
-  "Vezes que você assistiu": 5,
-  "Avaliação": 9.3
-},
-{
-  "Filme": "Tropa de Elite",
-  "Ano": 2007,
-  "Gênero": "Drama",
-  "Vezes que você assistiu": 1,
-  "Avaliação": 9
-},
-{
-  "Filme": "Wicked",
-  "Ano": 2024,
-  "Gênero": "Musical",
-  "Vezes que você assistiu": 4,
-  "Avaliação": 10
-}
+[
+  {
+    "Filme": "Vingadores: Ultimato",
+    "Ano": 2019,
+    "Gênero": "Ação e Super-heróis",
+    "Vezes que você assistiu": 1,
+    "Avaliação": 9.5
+  },
+  {
+    "Filme": "Matrix",
+    "Ano": 1999,
+    "Gênero": "Ficção Científica",
+    "Vezes que você assistiu": 4,
+    "Avaliação": 8.9
+  },
+  {
+    "Filme": "A Substância",
+    "Ano": 2024,
+    "Gênero": "Terror",
+    "Vezes que você assistiu": 3,
+    "Avaliação": 8
+  },
+  {
+    "Filme": "A Onda",
+    "Ano": 2008,
+    "Gênero": "Thriller",
+    "Vezes que você assistiu": 5,
+    "Avaliação": 7.5
+  },
+  {
+    "Filme": "Estômago",
+    "Ano": 2008,
+    "Gênero": "Comédia",
+    "Vezes que você assistiu": 4,
+    "Avaliação": 7.8
+  },
+  {
+    "Filme": "O céu de Suely",
+    "Ano": 2006,
+    "Gênero": "Drama",
+    "Vezes que você assistiu": 5,
+    "Avaliação": 8.7
+  },
+  {
+    "Filme": "O segredo de Brokeback Mountain",
+    "Ano": 2006,
+    "Gênero": "Drama",
+    "Vezes que você assistiu": 3,
+    "Avaliação": 8.3
+  },
+  {
+    "Filme": "Whiplash",
+    "Ano": 2014,
+    "Gênero": "Drama",
+    "Vezes que você assistiu": 6,
+    "Avaliação": 9.5
+  },
+  {
+    "Filme": "Batman: O Cavaleiro das Trevas",
+    "Ano": 2008,
+    "Gênero": "Ação",
+    "Vezes que você assistiu": 5,
+    "Avaliação": 9.3
+  },
+  {
+    "Filme": "Tropa de Elite",
+    "Ano": 2007,
+    "Gênero": "Drama",
+    "Vezes que você assistiu": 1,
+    "Avaliação": 9
+  },
+  {
+    "Filme": "Wicked",
+    "Ano": 2024,
+    "Gênero": "Musical",
+    "Vezes que você assistiu": 4,
+    "Avaliação": 10
+  },
+  {
+    "Filme": "As Branquelas",
+    "Ano": 2004,
+    "Genêro": "Comédia",
+    "Vezes que você assistiu": 5,
+    "Avaliação": 10.0
+  }
+]
