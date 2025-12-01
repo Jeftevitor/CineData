@@ -1,37 +1,45 @@
 import json, os
 
+
 def coloca_filme():
     filmes = []
-    q = int(input("Quantos filmes deseja adicionar aos favoritos? "))
+    
+    try:
+        q = int(input("Quantos filmes deseja adicionar aos favoritos? "))
+        for i in range(q):
+            print(f"\n--- Filme {i+1} ---")
+            filme = input("Nome do filme: ")
+            ano = int(input("Ano de lançamento: "))
+            genero = input("Gênero: ")
+            
+            assistiu = int(input("Quantas vezes você assistiu este filme? "))
+            if assistiu < 0:
+                assistiu = 0
+            
+            avaliacao = float(input("Avalie este filme entre 0 e 10: "))
 
-    for i in range(q):
-        print(f"\n--- Filme {i+1} ---")
-        filme = input("Nome do filme: ")
-        ano = int(input("Ano de lançamento: "))
-        genero = input("Gênero: ")
-        
-        assistiu = int(input("Quantas vezes você assistiu este filme? "))
-        if assistiu < 0:
-            assistiu = 0
-        
-        avaliacao = float(input("Avalie este filme entre 0 e 10: "))
+            if avaliacao > 10:
+                avaliacao = 10
+            elif avaliacao < 0:
+                avaliacao = 0
 
-        if avaliacao > 10:
-            avaliacao = 10
-        elif avaliacao < 0:
-            avaliacao = 0
+            filme_dict = {
+                "Filme": filme,
+                "Ano": ano,
+                "Genêro": genero,
+                "Vezes que você assistiu": assistiu,
+                "Avaliação": avaliacao
+            }
 
-        filme_dict = {
-            "Filme": filme,
-            "Ano": ano,
-            "Genêro": genero,
-            "Vezes que você assistiu": assistiu,
-            "Avaliação": avaliacao
-        }
+            filmes.append(filme_dict)
+            return filmes
+            
+    except:
+        print('Ocorreu um erro. Tente novamente.')
+        return filmes
 
-        filmes.append(filme_dict)
 
-    return filmes
+
 
 # Lê JSON existente
 if os.path.exists("fav.json"):
@@ -195,4 +203,4 @@ while True:
     if opcao == "4":
         print("Espero que tenha aproveitado a experiência!")
         print("Até breve. Fechando o progama...")
-
+        break
