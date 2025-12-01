@@ -33,27 +33,27 @@ def coloca_filme():
 
     return filmes
 
+# Lê JSON existente
+if os.path.exists("fav.json"):
+    with open("fav.json", "r", encoding="utf-8") as f:
+                dados_existentes = json.load(f)
+else:
+    dados_existentes = []
 
+# Menu
 print("Olá, bem vindo ao CineData!\n")
 while True:
     print("Menu:")
-    print("Opção 1. Adicionar filmes")
-    print("Opção 2. Buscar um filme na sua lista de favoritos")
-    print("Opção 3. Mostrar Ranking de todos os filmes")
-    print("Opção 4. Sair")
+    print("Opção 1. Adicionar filmes a sua lista de favoritos.")
+    print("Opção 2. Buscar ou edtar um filme na sua lista de favoritos.")
+    print("Opção 3. Mostrar Ranking de todos os filmes.")
+    print("Opção 4. Sair.")
 
-    opcao = str(input("Escolha uma opção!"))
+    opcao = str(input("Escolha uma opção! "))
 
     # Opção 1:
     if opcao == "1":
         novos_filmes = coloca_filme()
-
-        # Lê JSON existente
-        if os.path.exists("fav.json"):
-            with open("fav.json", "r", encoding="utf-8") as f:
-                dados_existentes = json.load(f)
-        else:
-            dados_existentes = []
 
         # Verificar duplicados
         nomes_existentes = [item["Filme"] for item in dados_existentes]
@@ -77,9 +77,6 @@ while True:
         else:
             print("\nNenhum novo filme foi adicionado.")
 
-    else:
-        print("Ok. Nada foi feito.")
-
 
     # Lê JSON existente
         if os.path.exists("fav.json"):
@@ -88,40 +85,97 @@ while True:
         else:
             dados_existentes = []
 
-    # Rankings
-    a = [i["Avaliação"] for i in dados_existentes]
-    avaliado = sorted(a, reverse=True)
-
-    r = [i["Vezes que você assistiu"] for i in dados_existentes]
-    ranking = sorted(r, reverse=True)
-
-    buscar = input("Deseja buscar filmes da sua lista de favoritos? (s/n): ").lower()
-
     # Opção 2:
     if opcao == "2":
-        while buscar == "s":
-            filme_b = str(input("Digite o nome do filme que deseja procurar: "))
+        
+        # Rankings
+        a = [i["Avaliação"] for i in dados_existentes]
+        avaliado = sorted(a, reverse=True)
 
-            for i in dados_existentes:
-                if i["Filme"] == filme_b:
-                    print(i)
-                    print("\nRankings\n")
+        r = [i["Vezes que você assistiu"] for i in dados_existentes]
+        ranking = sorted(r, reverse=True)
 
-                    # Ranking por avaliação
-                    pos_avaliado = avaliado.index(i["Avaliação"]) + 1
-                    print(f"O filme {filme_b} é o {pos_avaliado}° mais bem avaliado!")
+        while True:
+            filme_b = input("Digite o nome do filme que deseja procurar: ")
 
-                    # Ranking por vezes assistido
-                    pos_assistido = ranking.index(i["Vezes que você assistiu"]) + 1
-                    print(f"O filme {filme_b} é o {pos_assistido}° mais assistido!")
+            filme_encontrado = None
+            for item in dados_existentes:
+                if item["Filme"].lower() == filme_b.lower():
+                    filme_encontrado = item
 
-            buscar = input("Deseja buscar filmes da sua lista de favoritos? (s/n): ").lower()
-            if buscar == "n":
+            if not filme_encontrado:
+                print("Filme não encontrado!\n")
+
+            else:
+                # Mostra dados
+                print("\nFilme encontrado:")
+                print(filme_encontrado)
+
+                # Ranking por avaliação
+                pos_avaliado = avaliado.index(filme_encontrado["Avaliação"]) + 1
+                print(f"\nO filme {filme_b} é o {pos_avaliado}° mais bem avaliado!")
+
+                # Ranking por vezes assistido
+                pos_assistido = ranking.index(filme_encontrado["Vezes que você assistiu"]) + 1
+                print(f"O filme {filme_b} é o {pos_assistido}° mais assistido!\n")
+
+                # Menu de edição
+                edit = input("Deseja editar os dados do filme? (s/n): ").lower()
+
+                while edit == "s":
+                    print("\nO que deseja editar?")
+                    print("1. Nome")
+                    print("2. Ano")
+                    print("3. Gênero")
+                    print("4. Vezes que assistiu")
+                    print("5. Avaliação")
+                    print("0. Sair da edição")
+
+                    opcao_e = input("Escolha uma opção: ")
+
+                    if opcao_e == "1":
+                        novo = input("Novo nome: ")
+                        filme_encontrado["Filme"] = novo
+                    elif opcao_e == "2":
+                        novo = input("Novo ano: ")
+                        filme_encontrado["Ano"] = novo
+                    elif opcao_e == "3":
+                        novo = input("Novo gênero: ")
+                        filme_encontrado["Genero"] = novo
+                    elif opcao_e == "4":
+                        novo = int(input("Nova quantidade: "))
+                        filme_encontrado["Vezes que você assistiu"] = novo
+                    elif opcao_e == "5":
+                        novo = float(input("Nova avaliação (0 a 10): "))
+                        filme_encontrado["Avaliação"] = novo
+                    elif opcao_e == "0":
+                        break
+                    else:
+                        print("Opção inválida!")
+
+                    print("\nFilme atualizado:")
+                    print(filme_encontrado)
+
+                    # Salva no JSON após cada alteração
+                    with open("fav.json", "w", encoding="utf-8") as f:
+                        json.dump(dados_existentes, f, indent=2, ensure_ascii=False)
+
+                print("\nEdição finalizada.\n")
+
+            continuar = input("Deseja continuar buscando ou editando filmes? (s/n): ").lower()
+            if continuar == "n":
                 print("Ok, paramos por aqui!")
                 break
     
     # Opção 3:
-    if opcao == "3":            
+    if opcao == "3": 
+         # Rankings
+        a = [i["Avaliação"] for i in dados_existentes]
+        avaliado = sorted(a, reverse=True)
+
+        r = [i["Vezes que você assistiu"] for i in dados_existentes]
+        ranking = sorted(r, reverse=True)
+
         for i in dados_existentes:
             print(f"Filme: {i['Filme']}\n")
 
