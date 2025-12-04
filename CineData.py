@@ -1,5 +1,8 @@
-import json, os
+import json, os, time
 
+def limpar_tela():
+    # Limpa o terminal de forma compatível com Windows, Linux e Mac
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def coloca_filme():
     filmes = []
@@ -29,6 +32,9 @@ def coloca_filme():
             elif avaliacao < 0:
                 avaliacao = 0
 
+            limpar_tela()
+            time.sleep(0.5)
+
             filme_dict = {
                 "Filme": filme,
                 "Ano": ano,
@@ -53,18 +59,21 @@ else:
     dados_existentes = []
 
 # Menu
-print("Olá, bem vindo ao CineData!\n")
+print("Olá, bem vindo ao CineData!\n\n\n")
 while True:
-    print("\n\n\n ----- Menu -----:")
+    print("----- Menu -----:")
     print("Opção 1. Adicionar filmes a sua lista de favoritos.")
     print("Opção 2. Buscar ou edtar um filme na sua lista de favoritos.")
     print("Opção 3. Mostrar Ranking de todos os filmes.")
-    print("Opção 4. Sair.")
+    print("Opção 0. Sair.")
 
     opcao = str(input("Escolha uma opção! "))
 
     # Opção 1:
     if opcao == "1":
+        limpar_tela()
+        time.sleep(0.5)
+
         novos_filmes = coloca_filme()
 
         # Verificar duplicados
@@ -99,7 +108,9 @@ while True:
 
     # Opção 2:
     elif opcao == "2":
-            
+        limpar_tela()
+        time.sleep(0.5)  
+
         a = [i["Avaliação"] for i in dados_existentes]
         avaliado = sorted(a, reverse=True)
 
@@ -144,20 +155,32 @@ while True:
                     opcao_e = input("Escolha uma opção: ")
 
                     if opcao_e == "1":
+                        limpar_tela()
+                        time.sleep(0.5)
+
                         novo = input("Novo nome: ")
                         filme_encontrado["Filme"] = novo
 
                     elif opcao_e == "2":
+                        limpar_tela()
+                        time.sleep(0.5)
+
                         novo = input("Novo ano (4 dígitos): ")
                         while not (novo.isdigit() and len(novo) == 4):
                             novo = input("Ano inválido. Digite novamente (4 dígitos): ")
                         filme_encontrado["Ano"] = int(novo)
 
                     elif opcao_e == "3":
+                        limpar_tela()
+                        time.sleep(0.5)
+
                         novo = input("Novo gênero: ")
                         filme_encontrado["Gênero"] = novo
 
                     elif opcao_e == "4":
+                        limpar_tela()
+                        time.sleep(0.5)   
+
                         novo = int(input("Nova quantidade: "))
                         if novo < filme_encontrado["Vezes que você assistiu"]:
                             print("Não é possível adicionar um número menor que o anterior.")
@@ -165,11 +188,16 @@ while True:
                             filme_encontrado["Vezes que você assistiu"] = novo
 
                     elif opcao_e == "5":
+                        limpar_tela()
+                        time.sleep(0.5)
+
                         novo = float(input("Nova avaliação (0 a 10): "))
                         novo = max(0, min(10, novo))  # limita entre 0 e 10
                         filme_encontrado["Avaliação"] = novo
 
                     elif opcao_e == "0":
+                        limpar_tela()
+                        time.sleep(0.5)
                         break
 
                     else:
@@ -182,7 +210,7 @@ while True:
                     with open("fav.json", "w", encoding="utf-8") as f:
                         json.dump(dados_existentes, f, indent=2, ensure_ascii=False)
 
-                print("\nEdição finalizada.\n")
+                    print("\nEdição finalizada.\n")
 
             continuar = input("Deseja continuar buscando ou editando filmes? (s/n): ").lower()
             if continuar == "n":
@@ -191,6 +219,9 @@ while True:
     
     # Opção 3:
     elif opcao == "3":
+        limpar_tela()
+        time.sleep(0.5)
+
         avaliado = sorted([i["Avaliação"] for i in dados_existentes], reverse=True)
         ranking = sorted([i["Vezes que você assistiu"] for i in dados_existentes], reverse=True)
 
@@ -214,6 +245,8 @@ while True:
             opcao_r = input("Escolha uma opção: ")
 
             if opcao_r == "1":
+                limpar_tela()
+                time.sleep(0.5)
                 break
 
             elif opcao_r == "2":
@@ -236,10 +269,19 @@ while True:
                 print("Opção inválida. Tente novamente.")
  
     #Opção 4:
-    elif opcao == "4":
+    elif opcao == "0":
+        limpar_tela()
+        time.sleep(0.5)
+
         print("Espero que tenha aproveitado a experiência!")
         print("Até breve. Fechando o progama...")
+        
+        time.sleep(3)
+        limpar_tela()
         break
 
     else:
+        limpar_tela()
+        time.sleep(0.5)
+
         print("Opção inválida. Tente novamente.")
