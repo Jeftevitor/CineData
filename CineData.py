@@ -32,8 +32,8 @@ def coloca_filme():
             filme_dict = {
                 "Filme": filme,
                 "Ano": ano,
-                "Gênero": genero,
-                "Vezes assistido": assistiu,
+                "Genero": genero,
+                "Vezes que voce assistiu": assistiu,
                 "Avaliação": avaliacao
             }
 
@@ -55,7 +55,7 @@ else:
 # Menu
 print("Olá, bem vindo ao CineData!\n")
 while True:
-    print("Menu:")
+    print("\n\n\n ----- Menu -----:")
     print("Opção 1. Adicionar filmes a sua lista de favoritos.")
     print("Opção 2. Buscar ou edtar um filme na sua lista de favoritos.")
     print("Opção 3. Mostrar Ranking de todos os filmes.")
@@ -99,8 +99,7 @@ while True:
 
     # Opção 2:
     elif opcao == "2":
-        
-        # Rankings
+            
         a = [i["Avaliação"] for i in dados_existentes]
         avaliado = sorted(a, reverse=True)
 
@@ -119,7 +118,6 @@ while True:
                 print("Filme não encontrado!\n")
 
             else:
-                # Mostra dados
                 print("\nFilme encontrado:")
                 print(filme_encontrado)
 
@@ -148,23 +146,32 @@ while True:
                     if opcao_e == "1":
                         novo = input("Novo nome: ")
                         filme_encontrado["Filme"] = novo
+
                     elif opcao_e == "2":
-                        novo = input("Novo ano: ")
-                        filme_encontrado["Ano"] = novo
+                        novo = input("Novo ano (4 dígitos): ")
+                        while not (novo.isdigit() and len(novo) == 4):
+                            novo = input("Ano inválido. Digite novamente (4 dígitos): ")
+                        filme_encontrado["Ano"] = int(novo)
+
                     elif opcao_e == "3":
                         novo = input("Novo gênero: ")
-                        filme_encontrado["Genero"] = novo
+                        filme_encontrado["Gênero"] = novo
+
                     elif opcao_e == "4":
                         novo = int(input("Nova quantidade: "))
                         if novo < filme_encontrado["Vezes que você assistiu"]:
-                            print("Não é possivel adionar um numero menor que o anterior.")
-                            novo == filme_encontrado["Vezes que você assstiu"]
-                        filme_encontrado["Vezes que você assistiu"] = novo
+                            print("Não é possível adicionar um número menor que o anterior.")
+                        else:
+                            filme_encontrado["Vezes que você assistiu"] = novo
+
                     elif opcao_e == "5":
                         novo = float(input("Nova avaliação (0 a 10): "))
+                        novo = max(0, min(10, novo))  # limita entre 0 e 10
                         filme_encontrado["Avaliação"] = novo
+
                     elif opcao_e == "0":
                         break
+
                     else:
                         print("Opção inválida!")
 
@@ -181,52 +188,57 @@ while True:
             if continuar == "n":
                 print("Ok, paramos por aqui!")
                 break
+
+
     
     # Opção 3:
     elif opcao == "3":
-        # Rankings
         avaliado = sorted([i["Avaliação"] for i in dados_existentes], reverse=True)
         ranking = sorted([i["Vezes que você assistiu"] for i in dados_existentes], reverse=True)
 
         for indice, filme in enumerate(dados_existentes, start=1):
             print(f"Filme {indice}: {filme['Filme']}\n")
 
-            # Ranking por avaliação
             pos_avaliado = avaliado.index(filme["Avaliação"]) + 1
             print("Avaliação:")
             print(f"→ {filme['Filme']} é o {pos_avaliado}° mais bem avaliado!\n")
 
-            # Ranking por vezes assistido
             pos_assistido = ranking.index(filme["Vezes que você assistiu"]) + 1
             print("Assistidos:")
             print(f"→ {filme['Filme']} é o {pos_assistido}° mais assistido!\n")
             print("Vezes assistidas:", filme["Vezes que você assistiu"])
 
             print("-" * 40)
+
         while True:
-                print("\nOpção 1. Retornar ao menu")
-                print("Opção 2. Inserir vezes assistidas a um filme")
-                opcao_r = input("Escolha uma opção: ")
+            print("\nOpção 1. Retornar ao menu")
+            print("Opção 2. Inserir vezes assistidas a um filme")
+            opcao_r = input("Escolha uma opção: ")
 
-                if opcao_r == "1":
-                    break
+            if opcao_r == "1":
+                break
 
-                elif opcao_r == "2":
-                    filme_n = int(input("Qual o número do filme que deseja editar? "))
-                    filme_e = dados_existentes[filme_n - 1]
+            elif opcao_r == "2":
+                filme_n = int(input("Qual o número do filme que deseja editar? "))
+                filme_e = dados_existentes[filme_n - 1]
 
-                    print(f"\nVocê selecionou: {filme_e['Filme']}")
-                    novo = int(input("Digite a nova quantidade: "))
+                print(f"\nVocê selecionou: {filme_e['Filme']}")
+                novo = int(input("Digite a nova quantidade: "))
 
-                    if novo < filme_e["Vezes que você assistiu"]:
-                        print("\nNão é possível colocar um número menor que o anterior.")
-                    else:
-                        filme_e["Vezes que você assistiu"] = novo
-                        print("\nQuantidade atualizada com sucesso!")
+                if novo < filme_e["Vezes que você assistiu"]:
+                    print("\nNão é possível colocar um número menor que o anterior.")
                 else:
-                    print("Opção inválida. Tente novamente.")
+                    filme_e["Vezes que você assistiu"] = novo
+                    print("\nQuantidade atualizada com sucesso!")
+
+                    with open("fav.json", "w", encoding="utf-8") as f:
+                        json.dump(dados_existentes, f, indent=2, ensure_ascii=False)
+
+            else:
+                print("Opção inválida. Tente novamente.")
+
                 
-        #Opção 4:
+    #Opção 4:
     elif opcao == "4":
         print("Espero que tenha aproveitado a experiência!")
         print("Até breve. Fechando o progama...")
