@@ -6,18 +6,24 @@ def coloca_filme():
     
     try:
         q = int(input("Quantos filmes deseja adicionar aos favoritos? "))
+        
         for i in range(q):
             print(f"\n--- Filme {i+1} ---")
             filme = input("Nome do filme: ")
-            ano = int(input("Ano de lançamento: "))
+
+            # validação do ano
+            ano = input("Ano de lançamento (4 dígitos): ")
+            while not (ano.isdigit() and len(ano) == 4):
+                ano = input("Ano inválido. Digite novamente (4 dígitos): ")
+            ano = int(ano)
+
             genero = input("Gênero: ")
-            
+
             assistiu = int(input("Quantas vezes você assistiu este filme? "))
             if assistiu < 0:
                 assistiu = 0
-            
-            avaliacao = float(input("Avalie este filme entre 0 e 10: "))
 
+            avaliacao = float(input("Avalie este filme entre 0 e 10: "))
             if avaliacao > 10:
                 avaliacao = 10
             elif avaliacao < 0:
@@ -26,20 +32,18 @@ def coloca_filme():
             filme_dict = {
                 "Filme": filme,
                 "Ano": ano,
-                "Genêro": genero,
-                "Vezes que você assistiu": assistiu,
+                "Gênero": genero,
+                "Vezes assistido": assistiu,
                 "Avaliação": avaliacao
             }
 
             filmes.append(filme_dict)
-            return filmes
-            
-    except:
-        print('Ocorreu um erro. Tente novamente.')
+
         return filmes
 
-
-
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+        return filmes
 
 # Lê JSON existente
 if os.path.exists("fav.json"):
