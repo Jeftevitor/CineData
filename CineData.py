@@ -32,8 +32,8 @@ def coloca_filme():
             filme_dict = {
                 "Filme": filme,
                 "Ano": ano,
-                "Genero": genero,
-                "Vezes que voce assistiu": assistiu,
+                "Gênero": genero,
+                "Vezes que você assistiu": assistiu,
                 "Avaliação": avaliacao
             }
 
@@ -137,7 +137,7 @@ while True:
                     print("1. Nome")
                     print("2. Ano")
                     print("3. Gênero")
-                    print("4. Vezes que assistiu")
+                    print("4. Vezes que você assistiu")
                     print("5. Avaliação")
                     print("0. Sair da edição")
 
@@ -188,8 +188,6 @@ while True:
             if continuar == "n":
                 print("Ok, paramos por aqui!")
                 break
-
-
     
     # Opção 3:
     elif opcao == "3":
@@ -236,8 +234,7 @@ while True:
 
             else:
                 print("Opção inválida. Tente novamente.")
-
-                
+ 
     #Opção 4:
     elif opcao == "4":
         print("Espero que tenha aproveitado a experiência!")
