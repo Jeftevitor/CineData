@@ -98,7 +98,7 @@ while True:
             dados_existentes = []
 
     # Opção 2:
-    if opcao == "2":
+    elif opcao == "2":
         
         # Rankings
         a = [i["Avaliação"] for i in dados_existentes]
@@ -156,6 +156,9 @@ while True:
                         filme_encontrado["Genero"] = novo
                     elif opcao_e == "4":
                         novo = int(input("Nova quantidade: "))
+                        if novo < filme_encontrado["Vezes que você assistiu"]:
+                            print("Não é possivel adionar um numero menor que o anterior.")
+                            novo == filme_encontrado["Vezes que você assstiu"]
                         filme_encontrado["Vezes que você assistiu"] = novo
                     elif opcao_e == "5":
                         novo = float(input("Nova avaliação (0 a 10): "))
@@ -180,31 +183,54 @@ while True:
                 break
     
     # Opção 3:
-    if opcao == "3": 
-         # Rankings
-        a = [i["Avaliação"] for i in dados_existentes]
-        avaliado = sorted(a, reverse=True)
+    elif opcao == "3":
+        # Rankings
+        avaliado = sorted([i["Avaliação"] for i in dados_existentes], reverse=True)
+        ranking = sorted([i["Vezes que você assistiu"] for i in dados_existentes], reverse=True)
 
-        r = [i["Vezes que você assistiu"] for i in dados_existentes]
-        ranking = sorted(r, reverse=True)
-
-        for i in dados_existentes:
-            print(f"Filme: {i['Filme']}\n")
+        for indice, filme in enumerate(dados_existentes, start=1):
+            print(f"Filme {indice}: {filme['Filme']}\n")
 
             # Ranking por avaliação
-            pos_avaliado = avaliado.index(i["Avaliação"]) + 1
+            pos_avaliado = avaliado.index(filme["Avaliação"]) + 1
             print("Avaliação:")
-            print(f"→ {i['Filme']} é o {pos_avaliado}° mais bem avaliado!\n")
+            print(f"→ {filme['Filme']} é o {pos_avaliado}° mais bem avaliado!\n")
 
             # Ranking por vezes assistido
-            pos_assistido = ranking.index(i["Vezes que você assistiu"]) + 1
+            pos_assistido = ranking.index(filme["Vezes que você assistiu"]) + 1
             print("Assistidos:")
-            print(f"→ {i['Filme']} é o {pos_assistido}° mais assistido!\n")
+            print(f"→ {filme['Filme']} é o {pos_assistido}° mais assistido!\n")
+            print("Vezes assistidas:", filme["Vezes que você assistiu"])
 
             print("-" * 40)
+        while True:
+                print("\nOpção 1. Retornar ao menu")
+                print("Opção 2. Inserir vezes assistidas a um filme")
+                opcao_r = input("Escolha uma opção: ")
 
-    #Opção 4:
-    if opcao == "4":
+                if opcao_r == "1":
+                    break
+
+                elif opcao_r == "2":
+                    filme_n = int(input("Qual o número do filme que deseja editar? "))
+                    filme_e = dados_existentes[filme_n - 1]
+
+                    print(f"\nVocê selecionou: {filme_e['Filme']}")
+                    novo = int(input("Digite a nova quantidade: "))
+
+                    if novo < filme_e["Vezes que você assistiu"]:
+                        print("\nNão é possível colocar um número menor que o anterior.")
+                    else:
+                        filme_e["Vezes que você assistiu"] = novo
+                        print("\nQuantidade atualizada com sucesso!")
+                else:
+                    print("Opção inválida. Tente novamente.")
+                
+        #Opção 4:
+    elif opcao == "4":
         print("Espero que tenha aproveitado a experiência!")
         print("Até breve. Fechando o progama...")
         break
+
+    else:
+        print("Opção inválida. Tente novamente.")
