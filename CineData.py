@@ -150,6 +150,7 @@ while True:
                     print("3. Gênero")
                     print("4. Vezes que você assistiu")
                     print("5. Avaliação")
+                    print("6. Deletar filme")
                     print("0. Sair da edição")
 
                     opcao_e = input("Escolha uma opção: ")
@@ -194,6 +195,24 @@ while True:
                         novo = float(input("Nova avaliação (0 a 10): "))
                         novo = max(0, min(10, novo))  # limita entre 0 e 10
                         filme_encontrado["Avaliação"] = novo
+
+                    elif opcao_e == "6":
+
+                        # deletar filme
+                        limpar_tela()
+                        time.sleep(0.5)
+                        confirmar = input(f"Tem certeza que deseja deletar '{filme_encontrado['Filme']}'? (s/n): ").lower()
+
+                        if confirmar == "s":
+                            dados_existentes.remove(filme_encontrado)
+
+                            with open("fav.json", "w", encoding="utf-8") as f:
+                                json.dump(dados_existentes, f, indent=2, ensure_ascii=False)
+
+                            print("\nFilme deletado com sucesso!\n")
+                            break
+                        else:
+                            print("\nAção cancelada.\n")
 
                     elif opcao_e == "0":
                         limpar_tela()
@@ -242,6 +261,7 @@ while True:
         while True:
             print("\nOpção 1. Retornar ao menu")
             print("Opção 2. Inserir vezes assistidas a um filme")
+            print("Opção 3. Deletar filme")
             opcao_r = input("Escolha uma opção: ")
 
             if opcao_r == "1":
@@ -264,6 +284,33 @@ while True:
 
                     with open("fav.json", "w", encoding="utf-8") as f:
                         json.dump(dados_existentes, f, indent=2, ensure_ascii=False)
+            
+             # Deletar filme
+            elif opcao_r == "3":
+                try:
+                    filme_n = int(input("Qual o número do filme que deseja deletar? "))
+                    filme_e = dados_existentes[filme_n - 1]
+                except:
+                    print("Número inválido.")
+                    continue
+
+                limpar_tela()
+                time.sleep(0.5)
+
+                confirmar = input(f"Tem certeza que deseja deletar '{filme_e['Filme']}'? (s/n): ").lower()
+
+                if confirmar == "s":
+                    dados_existentes.remove(filme_e)
+
+                    with open("fav.json", "w", encoding="utf-8") as f:
+                        json.dump(dados_existentes, f, indent=2, ensure_ascii=False)
+
+                    print("\nFilme deletado com sucesso!\n")
+                    time.sleep(1)
+                    break
+                else:
+                    print("\nAção cancelada.\n")
+        
 
             else:
                 print("Opção inválida. Tente novamente.")
