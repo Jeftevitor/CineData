@@ -1,49 +1,56 @@
-import json, os
+import json, os, time
 
+def limpar_tela():
+    # Limpa o terminal de forma compatível com Windows, Linux e Mac
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def coloca_filme():
     filmes = []
     
     try:
-        q = int(input("Quantos filmes deseja adicionar aos favoritos? "))
-        
-        for i in range(q):
-            print(f"\n--- Filme {i+1} ---")
-            filme = input("Nome do filme: ")
-
-            # validação do ano
-            ano = input("Ano de lançamento (4 dígitos): ")
-            while not (ano.isdigit() and len(ano) == 4):
-                ano = input("Ano inválido. Digite novamente (4 dígitos): ")
-            ano = int(ano)
-
-            genero = input("Gênero: ")
-
-            assistiu = int(input("Quantas vezes você assistiu este filme? "))
-            if assistiu < 0:
-                assistiu = 0
-
-            avaliacao = float(input("Avalie este filme entre 0 e 10: "))
-            if avaliacao > 10:
-                avaliacao = 10
-            elif avaliacao < 0:
-                avaliacao = 0
-
-            filme_dict = {
-                "Filme": filme,
-                "Ano": ano,
-                "Genero": genero,
-                "Vezes que voce assistiu": assistiu,
-                "Avaliação": avaliacao
-            }
-
-            filmes.append(filme_dict)
-
-        return filmes
-
+        q = int(input("Quantos filmes deseja adicionar aos favoritos? "))    
     except Exception as e:
-        print(f"Ocorreu um erro: {e}")
-        return filmes
+        print(f"Digite um número inteiro")
+        coloca_filme()
+
+    for i in range(q):
+        print(f"\n--- Filme {i+1} ---")
+        filme = input("Nome do filme: ")
+
+        # validação do ano
+        ano = input("Ano de lançamento (4 dígitos): ")
+        while not (ano.isdigit() and len(ano) == 4):
+            ano = input("Ano inválido. Digite novamente (4 dígitos): ")
+        ano = int(ano)
+
+        genero = input("Gênero: ")
+
+        assistiu = int(input("Quantas vezes você assistiu este filme? "))
+        if assistiu < 0:
+            assistiu = 0
+
+        avaliacao = float(input("Avalie este filme entre 0 e 10: "))
+        if avaliacao > 10:
+            avaliacao = 10
+        elif avaliacao < 0:
+            avaliacao = 0
+
+        limpar_tela()
+        time.sleep(0.5)
+
+        filme_dict = {
+            "Filme": filme,
+            "Ano": ano,
+            "Genêro": genero,
+            "Vezes que você assistiu": assistiu,
+            "Avaliação": avaliacao
+        }
+
+        filmes.append(filme_dict)
+
+    return filmes
+
+    
 
 # Lê JSON existente
 if os.path.exists("fav.json"):
@@ -53,18 +60,22 @@ else:
     dados_existentes = []
 
 # Menu
-print("Olá, bem vindo ao CineData!\n")
+print("Olá, bem vindo ao CineData!\n\n\n")
 while True:
-    print("\n\n\n ----- Menu -----:")
+    print("----- Menu -----:")
     print("Opção 1. Adicionar filmes a sua lista de favoritos.")
     print("Opção 2. Buscar ou edtar um filme na sua lista de favoritos.")
-    print("Opção 3. Mostrar Ranking de todos os filmes.")
-    print("Opção 4. Sair.")
+    print("Opção 3. Mostrar ranking por avaliação.")
+    print("Opção 4. Mostrar ranking por vezes assistidas.")
+    print("Opção 0. Sair.")
 
     opcao = str(input("Escolha uma opção! "))
 
     # Opção 1:
     if opcao == "1":
+        limpar_tela()
+        time.sleep(0.5)
+
         novos_filmes = coloca_filme()
 
         # Verificar duplicados
@@ -84,7 +95,8 @@ while True:
 
             with open("fav.json", "w", encoding="utf-8") as f:
                 json.dump(dados_existentes, f, indent=2, ensure_ascii=False)
-
+            for filme in filmes_para_adicionar:
+                print(filme)
             print("\nFilmes adicionados com sucesso!")
         else:
             print("\nNenhum novo filme foi adicionado.")
@@ -99,7 +111,9 @@ while True:
 
     # Opção 2:
     elif opcao == "2":
-            
+        limpar_tela()
+        time.sleep(0.5)  
+
         a = [i["Avaliação"] for i in dados_existentes]
         avaliado = sorted(a, reverse=True)
 
@@ -137,27 +151,40 @@ while True:
                     print("1. Nome")
                     print("2. Ano")
                     print("3. Gênero")
-                    print("4. Vezes que assistiu")
+                    print("4. Vezes que você assistiu")
                     print("5. Avaliação")
+                    print("6. Deletar filme")
                     print("0. Sair da edição")
 
                     opcao_e = input("Escolha uma opção: ")
 
                     if opcao_e == "1":
+                        limpar_tela()
+                        time.sleep(0.5)
+
                         novo = input("Novo nome: ")
                         filme_encontrado["Filme"] = novo
 
                     elif opcao_e == "2":
+                        limpar_tela()
+                        time.sleep(0.5)
+
                         novo = input("Novo ano (4 dígitos): ")
                         while not (novo.isdigit() and len(novo) == 4):
                             novo = input("Ano inválido. Digite novamente (4 dígitos): ")
                         filme_encontrado["Ano"] = int(novo)
 
                     elif opcao_e == "3":
+                        limpar_tela()
+                        time.sleep(0.5)
+
                         novo = input("Novo gênero: ")
                         filme_encontrado["Gênero"] = novo
 
                     elif opcao_e == "4":
+                        limpar_tela()
+                        time.sleep(0.5)   
+
                         novo = int(input("Nova quantidade: "))
                         if novo < filme_encontrado["Vezes que você assistiu"]:
                             print("Não é possível adicionar um número menor que o anterior.")
@@ -165,11 +192,34 @@ while True:
                             filme_encontrado["Vezes que você assistiu"] = novo
 
                     elif opcao_e == "5":
+                        limpar_tela()
+                        time.sleep(0.5)
+
                         novo = float(input("Nova avaliação (0 a 10): "))
                         novo = max(0, min(10, novo))  # limita entre 0 e 10
                         filme_encontrado["Avaliação"] = novo
 
+                    elif opcao_e == "6":
+
+                        # deletar filme
+                        limpar_tela()
+                        time.sleep(0.5)
+                        confirmar = input(f"Tem certeza que deseja deletar '{filme_encontrado['Filme']}'? (s/n): ").lower()
+
+                        if confirmar == "s":
+                            dados_existentes.remove(filme_encontrado)
+
+                            with open("fav.json", "w", encoding="utf-8") as f:
+                                json.dump(dados_existentes, f, indent=2, ensure_ascii=False)
+
+                            print("\nFilme deletado com sucesso!\n")
+                            break
+                        else:
+                            print("\nAção cancelada.\n")
+
                     elif opcao_e == "0":
+                        limpar_tela()
+                        time.sleep(0.5)
                         break
 
                     else:
@@ -182,40 +232,38 @@ while True:
                     with open("fav.json", "w", encoding="utf-8") as f:
                         json.dump(dados_existentes, f, indent=2, ensure_ascii=False)
 
-                print("\nEdição finalizada.\n")
+                    print("\nEdição finalizada.\n")
 
             continuar = input("Deseja continuar buscando ou editando filmes? (s/n): ").lower()
             if continuar == "n":
                 print("Ok, paramos por aqui!")
                 break
-
-
     
-    # Opção 3:
     elif opcao == "3":
-        avaliado = sorted([i["Avaliação"] for i in dados_existentes], reverse=True)
-        ranking = sorted([i["Vezes que você assistiu"] for i in dados_existentes], reverse=True)
+        limpar_tela()
+        time.sleep(0.5)
 
-        for indice, filme in enumerate(dados_existentes, start=1):
+        # Ordena os filmes do maior para o menor pela avaliação
+        avaliado = sorted(dados_existentes, key=lambda i: i["Avaliação"], reverse=True)
+
+        for indice, filme in enumerate(avaliado, start=1):
             print(f"Filme {indice}: {filme['Filme']}\n")
 
-            pos_avaliado = avaliado.index(filme["Avaliação"]) + 1
             print("Avaliação:")
-            print(f"→ {filme['Filme']} é o {pos_avaliado}° mais bem avaliado!\n")
-
-            pos_assistido = ranking.index(filme["Vezes que você assistiu"]) + 1
-            print("Assistidos:")
-            print(f"→ {filme['Filme']} é o {pos_assistido}° mais assistido!\n")
-            print("Vezes assistidas:", filme["Vezes que você assistiu"])
+            print(f"→ {filme['Filme']} é o {indice}° mais bem avaliado!\n")
+            print(f"Avaliação: {filme['Avaliação']}")
 
             print("-" * 40)
 
         while True:
             print("\nOpção 1. Retornar ao menu")
             print("Opção 2. Inserir vezes assistidas a um filme")
+            print("Opção 3. Deletar filme")
             opcao_r = input("Escolha uma opção: ")
 
             if opcao_r == "1":
+                limpar_tela()
+                time.sleep(0.5)
                 break
 
             elif opcao_r == "2":
@@ -233,16 +281,122 @@ while True:
 
                     with open("fav.json", "w", encoding="utf-8") as f:
                         json.dump(dados_existentes, f, indent=2, ensure_ascii=False)
+            
+             # Deletar filme
+            elif opcao_r == "3":
+                try:
+                    filme_n = int(input("Qual o número do filme que deseja deletar? "))
+                    filme_e = dados_existentes[filme_n - 1]
+                except:
+                    print("Número inválido.")
+                    continue
+
+                limpar_tela()
+                time.sleep(0.5)
+
+                confirmar = input(f"Tem certeza que deseja deletar '{filme_e['Filme']}'? (s/n): ").lower()
+
+                if confirmar == "s":
+                    dados_existentes.remove(filme_e)
+
+                    with open("fav.json", "w", encoding="utf-8") as f:
+                        json.dump(dados_existentes, f, indent=2, ensure_ascii=False)
+
+                    print("\nFilme deletado com sucesso!\n")
+                    time.sleep(1)
+                    break
+                else:
+                    print("\nAção cancelada.\n")
+        
 
             else:
                 print("Opção inválida. Tente novamente.")
-
-                
     #Opção 4:
     elif opcao == "4":
+        limpar_tela()
+        time.sleep(0.5)
+
+        ranking = sorted(dados_existentes, key=lambda i: i["Vezes que você assistiu"], reverse=True)
+
+        for indice, filme in enumerate(dados_existentes, start=1):
+            print(f"Filme {indice}: {filme['Filme']}\n")
+
+            print("Assistidos:")
+            print(f"→ {filme['Filme']} é o {pos_assistido}° mais assistido!\n")
+            print("Vezes assistidas:", filme["Vezes que você assistiu"])
+
+            print("-" * 40)
+
+        while True:
+            print("\nOpção 1. Retornar ao menu")
+            print("Opção 2. Inserir vezes assistidas a um filme")
+            print("Opção 3. Deletar filme")
+            opcao_r = input("Escolha uma opção: ")
+
+            if opcao_r == "1":
+                limpar_tela()
+                time.sleep(0.5)
+                break
+
+            elif opcao_r == "2":
+                filme_n = int(input("Qual o número do filme que deseja editar? "))
+                filme_e = dados_existentes[filme_n - 1]
+
+                print(f"\nVocê selecionou: {filme_e['Filme']}")
+                novo = int(input("Digite a nova quantidade: "))
+
+                if novo < filme_e["Vezes que você assistiu"]:
+                    print("\nNão é possível colocar um número menor que o anterior.")
+                else:
+                    filme_e["Vezes que você assistiu"] = novo
+                    print("\nQuantidade atualizada com sucesso!")
+
+                    with open("fav.json", "w", encoding="utf-8") as f:
+                        json.dump(dados_existentes, f, indent=2, ensure_ascii=False)
+            
+             # Deletar filme
+            elif opcao_r == "3":
+                try:
+                    filme_n = int(input("Qual o número do filme que deseja deletar? "))
+                    filme_e = dados_existentes[filme_n - 1]
+                except:
+                    print("Número inválido.")
+                    continue
+
+                limpar_tela()
+                time.sleep(0.5)
+
+                confirmar = input(f"Tem certeza que deseja deletar '{filme_e['Filme']}'? (s/n): ").lower()
+
+                if confirmar == "s":
+                    dados_existentes.remove(filme_e)
+
+                    with open("fav.json", "w", encoding="utf-8") as f:
+                        json.dump(dados_existentes, f, indent=2, ensure_ascii=False)
+
+                    print("\nFilme deletado com sucesso!\n")
+                    time.sleep(1)
+                    break
+                else:
+                    print("\nAção cancelada.\n")
+        
+
+            else:
+                print("Opção inválida. Tente novamente.")
+    #Opção 0:
+    elif opcao == "0":
+        limpar_tela()
+        time.sleep(0.5)
+
         print("Espero que tenha aproveitado a experiência!")
         print("Até breve. Fechando o progama...")
+        
+        time.sleep(3)
+        limpar_tela()
         break
 
     else:
+        limpar_tela()
+        time.sleep(0.5)
+
         print("Opção inválida. Tente novamente.")
