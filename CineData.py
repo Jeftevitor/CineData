@@ -21,7 +21,7 @@ def coloca_filme():
     for i in range(q):
         print(f"\n--- Filme {i+1} ---")
 
-        filme = input("Nome do filme: ").strip()
+        filme = input("Nome do filme: ")
 
         # Ano
         ano = input("Ano de lançamento (4 dígitos): ")
@@ -125,6 +125,8 @@ while True:
         else:
             print("\nNenhum novo filme foi adicionado.")
 
+        limpar_tela()
+        time.sleep(0.5)
 
     # Lê JSON existente
         if os.path.exists("fav.json"):
