@@ -1,3 +1,4 @@
+
 [
   {
     "Filme": "Vingadores: Ultimato",
@@ -12,13 +13,6 @@
     "Gênero": "Ficção Científica",
     "Vezes que você assistiu": 4,
     "Avaliação": 8.9
-  },
-  {
-    "Filme": "A Substância",
-    "Ano": 2024,
-    "Gênero": "Terror",
-    "Vezes que você assistiu": 3,
-    "Avaliação": 8
   },
   {
     "Filme": "A Onda",
@@ -67,27 +61,34 @@
     "Ano": 2007,
     "Gênero": "Drama",
     "Vezes que você assistiu": 1,
-    "Avaliação": 9
+    "Avaliação": 9.0
   },
   {
     "Filme": "Wicked",
     "Ano": 2024,
     "Gênero": "Musical",
     "Vezes que você assistiu": 4,
-    "Avaliação": 10
+    "Avaliação": 10.0
   },
   {
     "Filme": "As Branquelas",
     "Ano": 2004,
-    "Genêro": "Comédia",
+    "Gênero": "Comédia",
     "Vezes que você assistiu": 5,
     "Avaliação": 10.0
   },
   {
     "Filme": "Crepusculo",
     "Ano": "2009",
-    "Genêro": "Romance",
+    "Gênero": "Romance",
     "Vezes que você assistiu": 2,
     "Avaliação": 8.0
+  },
+  {
+    "Filme": "Wicked: For Good",
+    "Ano": 2025,
+    "Gênero": "Musical",
+    "Vezes que você assistiu": 1,
+    "Avaliação": 10
   }
 ]
