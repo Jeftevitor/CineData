@@ -70,13 +70,6 @@
     "Avaliação": 10.0
   },
   {
-    "Filme": "As Branquelas",
-    "Ano": 2004,
-    "Gênero": "Comédia",
-    "Vezes que você assistiu": 5,
-    "Avaliação": 10.0
-  },
-  {
     "Filme": "Crepusculo",
     "Ano": "2009",
     "Gênero": "Romance",
@@ -84,10 +77,10 @@
     "Avaliação": 8.0
   },
   {
-    "Filme": "Wicked: For Good",
+    "Filme": "Wicked: Parte 2",
     "Ano": 2025,
     "Gênero": "Musical",
     "Vezes que você assistiu": 1,
-    "Avaliação": 10
+    "Avaliação": 7.0
   }
 ]
