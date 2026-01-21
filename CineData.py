@@ -300,7 +300,7 @@ while True:
             # Editar quantidade
             elif opcao_r == "2":
                 try:
-                    filme_n = int(input("Qual o número do filme que deseja editar? "))
+                    filme_n = float(input("Qual o número do filme que deseja editar? "))
                     filme_ranking = ranking[filme_n - 1]
                     filme_original = dados_existentes[dados_existentes.index(filme_ranking)]
                 except:

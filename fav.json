@@ -14,13 +14,6 @@
     "Avaliação": 8.9
   },
   {
-    "Filme": "A Onda",
-    "Ano": 2008,
-    "Gênero": "Thriller",
-    "Vezes que você assistiu": 5,
-    "Avaliação": 7.5
-  },
-  {
     "Filme": "Estômago",
     "Ano": 2008,
     "Gênero": "Comédia",
@@ -81,6 +74,6 @@
     "Ano": 2025,
     "Gênero": "Musical",
     "Vezes que você assistiu": 1,
-    "Avaliação": 7.0
+    "Avaliação": 8.0
   }
 ]
