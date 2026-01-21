@@ -86,6 +86,9 @@ else:
 # Menu
 print("Olá, bem vindo ao CineData!\n\n\n")
 while True:
+    time.sleep(2.0)
+    limpar_tela
+    time.sleep(0.5)
     print("----- Menu -----:")
     print("Opção 1. Adicionar filmes a sua lista de favoritos.")
     print("Opção 2. Buscar ou edtar um filme na sua lista de favoritos.")
@@ -124,9 +127,6 @@ while True:
             print("\nFilmes adicionados com sucesso!")
         else:
             print("\nNenhum novo filme foi adicionado.")
-
-        limpar_tela()
-        time.sleep(0.5)
 
     # Lê JSON existente
         if os.path.exists("fav.json"):
